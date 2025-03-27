@@ -11,6 +11,7 @@ namespace Sources.BasicLogic.Character
         private const float RaycastDistance = 50;
         
         [SerializeField] private NavMeshAgent _navMeshAgent;
+        [SerializeField] private Animator _animator;
         
         private Camera _camera;
         private IInputService _inputService;
@@ -23,7 +24,18 @@ namespace Sources.BasicLogic.Character
             _camera = camera;
             _inputService = inputService;
 
-            _moveComponent = new MovementComponent(_navMeshAgent, inputService);
+            _moveComponent = new MovementComponent(_navMeshAgent, inputService, _animator);
+        }
+
+        private void Start()
+        {
+            //_navMeshAgent.isStopped = true;
+        }
+
+        private void Update()
+        {
+            if(_moveComponent != null)
+                _moveComponent.Tick();
         }
 
         private void OnEnable()

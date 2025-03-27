@@ -8,10 +8,18 @@ namespace Sources.Installellers
 {
     public class GameplayInstaller : MonoInstaller<GameplayInstaller>
     {
+        [SerializeField] private Camera _camera;
+        
         public override void InstallBindings()
         {
             BindInputService();
             BindCharacterFactory();
+            BindCamera();
+        }
+
+        private void BindCamera()
+        {
+            Container.BindInstance(_camera).AsSingle();
         }
 
         private void BindCharacterFactory()
