@@ -28,20 +28,15 @@ namespace Sources.BasicLogic.Character
 
         public void Tick()
         {
-            Debug.Log(_isMoved + " " + (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance));
-            
             if (_isMoved && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
             {
                 _isMoved = false;
                 _animator.SetBool(AnimationPathes.IsMovening, _isMoved);
-                
-                Debug.Log("stop");
             }
             else if (_isMoved == false && _navMeshAgent.remainingDistance > _navMeshAgent.stoppingDistance)
             {
                 _isMoved = true;
                 _animator.SetBool(AnimationPathes.IsMovening, _isMoved);
-                Debug.Log("move");
             }
         }
     }
