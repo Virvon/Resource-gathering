@@ -29,5 +29,12 @@ namespace Sources.BasicLogic.Building
                 AmountChanged?.Invoke(_amount);
             }
         }
+
+        public void CollectResorces(ResourcesBank resourcesBank)
+        {
+            resourcesBank.GetCell(_resourceType).TryAdd(_amount);
+            _amount = 0;
+            AmountChanged?.Invoke(_amount);
+        }
     }
 }

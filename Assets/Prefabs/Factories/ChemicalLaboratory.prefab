@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 814927785655829495}
   - component: {fileID: 2092026938253229883}
   - component: {fileID: -8864465325271620224}
+  - component: {fileID: -5812824903385102353}
   m_Layer: 0
   m_Name: ChemicalLaboratory
   m_TagString: Untagged
@@ -145,7 +146,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnAmount: 1
   _spawnCooldown: 1
-  _resourceCell:
-    _icon: {fileID: 0}
-    _type: 0
-    _amount: 0
+  _resourceType: 0
+--- !u!65 &-5812824903385102353
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8746887077885630606}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.1770976, y: 1.2248175, z: 3.4679308}
+  m_Center: {x: -1.086325, y: 0.6069677, z: 1.1074414}

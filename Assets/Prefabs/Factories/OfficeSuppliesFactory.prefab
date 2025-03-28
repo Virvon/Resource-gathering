@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6211619423644115661}
   - component: {fileID: 5475132653993893580}
   - component: {fileID: -7528320571198605611}
+  - component: {fileID: 4778611712114923110}
   m_Layer: 0
   m_Name: OfficeSuppliesFactory
   m_TagString: Untagged
@@ -144,7 +145,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnAmount: 1
   _spawnCooldown: 1
-  _resourceCell:
-    _icon: {fileID: 0}
-    _type: 0
-    _amount: 0
+  _resourceType: 0
+--- !u!65 &4778611712114923110
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8345157730680211466}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.3534698, y: 0.60948384, z: 1.7284899}
+  m_Center: {x: -0.9182651, y: 0.30474192, z: 0.06196007}

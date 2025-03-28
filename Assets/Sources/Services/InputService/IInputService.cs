@@ -6,5 +6,6 @@ namespace Sources.Services.InputService
     public interface IInputService
     {
         event Action<Vector2> Clicked;
+        void SetActive(bool isActive);
     }
 }

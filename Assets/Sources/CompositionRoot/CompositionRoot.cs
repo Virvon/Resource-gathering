@@ -17,7 +17,7 @@ namespace Sources.CompositionRoot
         private readonly Vector3 _viewOffset = new Vector3(0, 2, 0);
         
         [SerializeField] private BuildingData[] _buildings;
-        [FormerlySerializedAs("_resourceViewPrefab")] [SerializeField] private BuildingView buildingViewPrefab;
+        [FormerlySerializedAs("buildingViewPrefab")] [FormerlySerializedAs("_resourceViewPrefab")] [SerializeField] private ResourceView resourceViewPrefab;
         
         private Character.Factory _characterFactory;
         private BuildingPresenter.Factory _buildingPresenterFactory;
@@ -48,12 +48,12 @@ namespace Sources.CompositionRoot
             foreach (BuildingData _buildingData in _buildings)
             {
                 Building building = Instantiate(_buildingData.Prefab, _buildingData.Position, Quaternion.identity);
-                BuildingView buildingView = Instantiate(
-                    buildingViewPrefab,
+                ResourceView resourceView = Instantiate(
+                    resourceViewPrefab,
                     _buildingData.Position + _viewOffset,
                     Quaternion.Euler(30, 45, 0));
 
-                _disposables.Add(_buildingPresenterFactory.Create(buildingView, building));
+                _disposables.Add(_buildingPresenterFactory.Create(resourceView, building));
             }
         }
     }

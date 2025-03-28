@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7992835981369159586}
   - component: {fileID: 6779457394488094413}
   - component: {fileID: 313574584791778076}
+  - component: {fileID: -3277940844239767337}
   m_Layer: 0
   m_Name: PharmaceuticalFactory
   m_TagString: Untagged
@@ -147,7 +148,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnAmount: 1
   _spawnCooldown: 1
-  _resourceCell:
-    _icon: {fileID: 0}
-    _type: 0
-    _amount: 0
+  _resourceType: 0
+--- !u!65 &-3277940844239767337
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5681521687758208438}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.2591698, y: 0.996739, z: 1.7668798}
+  m_Center: {x: -1.0339032, y: 0.4722993, z: 0.034198493}

@@ -7,11 +7,11 @@ namespace Sources.UI
 {
     public class BuildingPresenter : IDisposable
     {
-        private readonly BuildingView _view;
+        private readonly ResourceView _view;
         private readonly Building _model;
         private readonly ResourcesBank _resourcesBank;
 
-        public BuildingPresenter(BuildingView view, Building model, ResourcesBank resourcesBank)
+        public BuildingPresenter(ResourceView view, Building model, ResourcesBank resourcesBank)
         {
             _view = view;
             _model = model;
@@ -32,7 +32,7 @@ namespace Sources.UI
             _view.ChangeAmount(amount.ToString());
         }
         
-        public class  Factory : PlaceholderFactory<BuildingView, Building, BuildingPresenter>
+        public class  Factory : PlaceholderFactory<ResourceView, Building, BuildingPresenter>
         {
         }
     }

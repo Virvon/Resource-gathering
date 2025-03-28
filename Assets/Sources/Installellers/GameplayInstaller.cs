@@ -4,6 +4,7 @@ using Sources.Infrastructure;
 using Sources.Services.AssetMenagement;
 using Sources.Services.InputService;
 using Sources.UI;
+using Sources.UI.Bank;
 using UnityEngine;
 using Zenject;
 
@@ -13,15 +14,15 @@ namespace Sources.Installellers
     {
         [SerializeField] private Camera _camera;
         [SerializeField] private ResourceCell[] _cells;
-        [SerializeField] private Transform _uiConatainer;
+        [SerializeField] private ResourcesListView _bankResourcesListView;
         public override void InstallBindings()
         {
             BindInputService();
             BindCharacterFactory();
             BindCamera();
             BindBank();
-            Container.BindInstance(_uiConatainer).AsSingle();
-            Container.BindFactory<BuildingView, Building, BuildingPresenter, BuildingPresenter.Factory>();
+            Container.BindFactory<ResourceView, Building, BuildingPresenter, BuildingPresenter.Factory>();
+            Container.BindInterfacesTo<BankPresenter>().AsSingle().WithArguments(_bankResourcesListView).NonLazy();
         }
 
         private void BindBank()

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Sources.UI
 {
-    public class BuildingView : MonoBehaviour
+    public class ResourceView : MonoBehaviour
     {
         [SerializeField] private TMP_Text _nameText;
         [SerializeField] private TMP_Text _amountText;
@@ -13,7 +13,7 @@ namespace Sources.UI
             _nameText.text = name;
         }
 
-        public void SetupAmount(string amount)
+        public void Setup(string amount)
         {
             ChangeAmount(amount);
         }
