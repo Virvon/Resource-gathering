@@ -2,6 +2,10 @@ namespace Sources.Infrastructure
 {
     public enum ResourceType
     {
-        Resource1,
+        Eggs,
+        Chemicals,
+        Gears,
+        Furniture,
+        Cosmetics,
     }
 }

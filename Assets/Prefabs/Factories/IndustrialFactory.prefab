@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnAmount: 1
   _spawnCooldown: 1
-  _resourceType: 0
+  _resourceType: 2
 --- !u!65 &-9143022839469411716
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
 using Sources.BasicLogic.Building;
 using Sources.BasicLogic.Character;
 using Sources.BasicLogic.Sound;
 using Sources.Services.AssetMenagement;
 using Sources.Services.SaveLoadService;
 using Sources.UI;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Sources.CompositionRoot
@@ -18,9 +15,8 @@ namespace Sources.CompositionRoot
     {
         private readonly Vector3 _viewOffset = new Vector3(0, 2, 0);
         
-        [SerializeField] private BuildingData[] _buildings;
-        [FormerlySerializedAs("buildingViewPrefab")] [FormerlySerializedAs("_resourceViewPrefab")] [SerializeField] private ResourceView resourceViewPrefab;
-        
+        private BuildingData[] _buildingDatas; 
+        private ResourceView _buildingViewPrefab;
         private Character.Factory _characterFactory;
         private BuildingPresenter.Factory _buildingPresenterFactory;
         
@@ -33,12 +29,16 @@ namespace Sources.CompositionRoot
             Character.Factory characterFactory,
             BuildingPresenter.Factory buildingPresenterFactory,
             SoundManagment soundManagment,
-            SaveLoadService saveLoadService)
+            SaveLoadService saveLoadService,
+            BuildingData[] buildingDatas,
+            ResourceView buildingViewPrefab)
         {
             _characterFactory = characterFactory;
             _buildingPresenterFactory = buildingPresenterFactory;
             _soundManagment = soundManagment;
             _saveLoadService = saveLoadService;
+            _buildingDatas = buildingDatas;
+            _buildingViewPrefab = buildingViewPrefab;
 
             _disposables = new();
         }
@@ -57,11 +57,11 @@ namespace Sources.CompositionRoot
             
             _characterFactory.Create(AssetPathes.Character);
 
-            foreach (BuildingData _buildingData in _buildings)
+            foreach (BuildingData _buildingData in _buildingDatas)
             {
                 Building building = Instantiate(_buildingData.Prefab, _buildingData.Position, Quaternion.identity);
                 ResourceView resourceView = Instantiate(
-                    resourceViewPrefab,
+                    _buildingViewPrefab,
                     _buildingData.Position + _viewOffset,
                     Quaternion.Euler(30, 45, 0));
 

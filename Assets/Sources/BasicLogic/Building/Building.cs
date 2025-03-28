@@ -12,10 +12,10 @@ namespace Sources.BasicLogic.Building
         [SerializeField] private ResourceType _resourceType;
 
         private float _passedTime;
-        private int _amount;
         
         public event Action<int> AmountChanged;
 
+        public int Amount { get; private set; }
         public ResourceType ResourceType => _resourceType;
 
         private void Update()
@@ -25,16 +25,16 @@ namespace Sources.BasicLogic.Building
             if (_passedTime >= _spawnCooldown)
             {
                 _passedTime = 0;
-                _amount += _spawnAmount;
-                AmountChanged?.Invoke(_amount);
+                Amount += _spawnAmount;
+                AmountChanged?.Invoke(Amount);
             }
         }
 
         public void CollectResorces(ResourcesBank resourcesBank)
         {
-            resourcesBank.GetCell(_resourceType).TryAdd(_amount);
-            _amount = 0;
-            AmountChanged?.Invoke(_amount);
+            resourcesBank.GetCell(_resourceType).TryAdd(Amount);
+            Amount = 0;
+            AmountChanged?.Invoke(Amount);
         }
     }
 }

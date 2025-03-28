@@ -50,6 +50,9 @@ namespace Sources.BasicLogic.Character
                 _isMoved = false;
                 _animator.SetBool(AnimationPathes.IsMovening, _isMoved);
                 _runAudioSource.Stop();
+
+                if (_targetBuilding != null)
+                    Pickup();
             }
             else if (_isMoved == false && _navMeshAgent.remainingDistance > _navMeshAgent.stoppingDistance)
             {
@@ -57,18 +60,19 @@ namespace Sources.BasicLogic.Character
                 _animator.SetBool(AnimationPathes.IsMovening, _isMoved);
                 _runAudioSource.Play();
             }
-
-            if (_isMoved == false
-                && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance
-                && _targetBuilding != null)
-            {
-                _animator.SetTrigger(AnimationPathes.Pickup);
-                _picupAudioSource.Play();
-                _targetBuilding.CollectResorces(_resourcesBank);
-                _targetBuilding = null;
-            }
         }
-        
+
+        private void Pickup()
+        {
+            if(_targetBuilding.Amount <= 0)
+                return;
+            
+            _animator.SetTrigger(AnimationPathes.Pickup);
+            _picupAudioSource.Play();
+            _targetBuilding.CollectResorces(_resourcesBank);
+            _targetBuilding = null;
+        }
+
         private void OnClicked(Vector2 position)
         {
             Ray ray = _camera.ScreenPointToRay(position);

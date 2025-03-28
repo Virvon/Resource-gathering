@@ -18,20 +18,17 @@ namespace Sources.UI
             _resourcesBank = resourcesBank;
             
             _view.SetName(_resourcesBank.GetCell(_model.ResourceType).Name);
+            _view.Setup(_model.Amount.ToString());
 
             _model.AmountChanged += OnAmountChanged;
         }
-        
-        public void Dispose()
-        {
-            _model.AmountChanged -= OnAmountChanged;
-        }
 
-        private void OnAmountChanged(int amount)
-        {
+        void IDisposable.Dispose() =>
+            _model.AmountChanged -= OnAmountChanged;
+
+        private void OnAmountChanged(int amount) =>
             _view.ChangeAmount(amount.ToString());
-        }
-        
+
         public class  Factory : PlaceholderFactory<ResourceView, Building, BuildingPresenter>
         {
         }
