@@ -1,18 +1,20 @@
-using System;
 using Sources.Infrastructure;
 using Sources.Services.InputService;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Sources.BasicLogic.Character
 {
-    public class Character : EntitiObject
+    public class Character : MonoBehaviour
     {
         private const float RaycastDistance = 100;
         
         [SerializeField] private NavMeshAgent _navMeshAgent;
         [SerializeField] private Animator _animator;
+        [SerializeField] private AudioSource _runAudioSource;
+        [SerializeField] private AudioSource _picupAudioSource;
         
         private Camera _camera;
         private IInputService _inputService;
@@ -47,11 +49,13 @@ namespace Sources.BasicLogic.Character
             {
                 _isMoved = false;
                 _animator.SetBool(AnimationPathes.IsMovening, _isMoved);
+                _runAudioSource.Stop();
             }
             else if (_isMoved == false && _navMeshAgent.remainingDistance > _navMeshAgent.stoppingDistance)
             {
                 _isMoved = true;
                 _animator.SetBool(AnimationPathes.IsMovening, _isMoved);
+                _runAudioSource.Play();
             }
 
             if (_isMoved == false
@@ -59,6 +63,7 @@ namespace Sources.BasicLogic.Character
                 && _targetBuilding != null)
             {
                 _animator.SetTrigger(AnimationPathes.Pickup);
+                _picupAudioSource.Play();
                 _targetBuilding.CollectResorces(_resourcesBank);
                 _targetBuilding = null;
             }

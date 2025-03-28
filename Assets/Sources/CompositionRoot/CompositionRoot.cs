@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using Sources.BasicLogic.Building;
 using Sources.BasicLogic.Character;
+using Sources.BasicLogic.Sound;
 using Sources.Services.AssetMenagement;
+using Sources.Services.SaveLoadService;
 using Sources.UI;
 using Unity.Mathematics;
 using UnityEngine;
@@ -23,12 +25,20 @@ namespace Sources.CompositionRoot
         private BuildingPresenter.Factory _buildingPresenterFactory;
         
         private List<IDisposable> _disposables;
+        private SoundManagment _soundManagment;
+        private SaveLoadService _saveLoadService;
 
         [Inject]
-        private void Construct(Character.Factory characterFactory, BuildingPresenter.Factory buildingPresenterFactory)
+        private void Construct(
+            Character.Factory characterFactory,
+            BuildingPresenter.Factory buildingPresenterFactory,
+            SoundManagment soundManagment,
+            SaveLoadService saveLoadService)
         {
             _characterFactory = characterFactory;
             _buildingPresenterFactory = buildingPresenterFactory;
+            _soundManagment = soundManagment;
+            _saveLoadService = saveLoadService;
 
             _disposables = new();
         }
@@ -43,6 +53,8 @@ namespace Sources.CompositionRoot
 
         private void Start()
         {
+            SetupSound();
+            
             _characterFactory.Create(AssetPathes.Character);
 
             foreach (BuildingData _buildingData in _buildings)
@@ -55,6 +67,14 @@ namespace Sources.CompositionRoot
 
                 _disposables.Add(_buildingPresenterFactory.Create(resourceView, building));
             }
+        }
+
+        private void SetupSound()
+        {
+            SoundData soundData = _saveLoadService.TryLoad<SoundData>();
+
+            _soundManagment.Setup(soundData != null ? soundData.Volume : 0);
+
         }
     }
 }

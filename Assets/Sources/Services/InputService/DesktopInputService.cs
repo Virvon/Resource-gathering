@@ -16,8 +16,13 @@ namespace Sources.Services.InputService
         public event Action<Vector2> Dragged;
         public event Action<Vector2> ClickStarted; 
         
-        public void SetActive(bool isActive) =>
+        public void SetActive(bool isActive)
+        {
             _isActive = isActive;
+
+            if (_isActive == false)
+                _isClickStarted = false;
+        }
 
         public void Tick()
         {
